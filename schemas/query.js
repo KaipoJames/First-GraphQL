@@ -1,5 +1,5 @@
 const { db } = require("../pgAdaptor");
-const { GraphQLObjectType, GraphQLID } = require("graphql");
+const { GraphQLObjectType, GraphQLString } = require("graphql");
 const { CisType } = require("./types");
 const { buildResolveInfo } = require("graphql/execution/execute");
 
@@ -9,7 +9,7 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         cis: {
             type: CisType,
-            args: { major: { type: GraphQLID } },
+            args: { major: { type: GraphQLString } },
             resolve(parentValue, args) {
                 const query = "Select * FROM cis2019 WHERE Major='Information Systems'";
                 const values = [args.major];
